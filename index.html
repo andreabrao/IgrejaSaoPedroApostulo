@@ -58,6 +58,22 @@
             <a href="#horarios" class="scroll-down"><i class="fa-solid fa-chevron-down"></i></a>
         </section>
 
+        <section class="liturgical-time">
+            <div class="container">
+                <div class="liturgy-banner">
+                    <div class="liturgy-info">
+                        <span class="label">Tempo Litúrgico</span>
+                        <h2 id="current-liturgy">Tempo Comum</h2>
+                        <p id="liturgy-desc">É tempo de esperança e de escuta atenta à Palavra de Deus.</p>
+                    </div>
+                    <div class="liturgy-color">
+                        <div class="color-circle" id="liturgy-circle"></div>
+                        <span id="color-name">Verde</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="horarios" class="info-section">
             <div class="container">
                 <h2 class="section-title">Celebrações <span>Eucarísticas</span></h2>
@@ -171,19 +187,42 @@
             </div>
         </div>
 
+        <a href="https://wa.me/5541000000000" class="whatsapp-float" target="_blank">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span class="whatsapp-tooltip">Dúvidas? Fale conosco!</span>
+        </a>
+
         <section id="comunidade" class="about">
             <div class="container">
-                <div class="about-content-wrapper">
-                    <div class="about-text" style="text-align: center;">
-                        <h2 class="section-title">Nossa Missão em <span>Itaperuçu</span></h2>
-                        <hr class="divider" style="margin: 0 auto 30px auto; width: 60px;">
-                        <p style="max-width: 800px; margin: 0 auto 30px auto;">
-                            Há 30 anos, somos uma comunidade viva dedicada à caridade, à oração e ao acolhimento. 
-                            Localizada no coração de Itaperuçu, a Paróquia São Pedro Apóstolo é o ponto de encontro 
-                            para quem busca fortalecer sua fé e servir ao próximo.
-                        </p>
-                        <a href="#" class="btn-primary">Ver Galeria de Fotos</a>
-                    </div>
+                <div class="about-text" id="about-container" style="text-align: center;">
+                    <h2 class="section-title">Nossa Missão em <span>Itaperuçu</span></h2>
+                    <p>
+                        Há 30 anos, somos uma comunidade viva dedicada à caridade, à oração e ao acolhimento. 
+                        Localizada no coração de Itaperuçu, a Paróquia São Pedro Apóstolo é o ponto de encontro 
+                        para quem busca fortalecer sua fé e servir ao próximo. Fundada com o propósito de ser 
+                        um farol de esperança, nossa história se confunde com o crescimento da própria cidade, 
+                        acolhendo gerações de famílias em seus momentos mais sagrados.
+                    </p>
+                    <button class="read-more-btn" onclick="toggleReadMore()">Ler História Completa</button>
+                    <br><br>
+                    <a href="#" class="btn-primary">Ver Galeria de Fotos</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="localizacao" class="location">
+            <div class="container">
+                <h2 class="section-title">Como <span>Chegar</span></h2>
+                <div class="map-container" style="height: 450px; width: 100%; border-radius: 24px; overflow: hidden; box-shadow: 0 15px 35px rgba(7, 18, 35, 0.1);">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.435753065662!2d-49.348421423712615!3d-25.222239402513224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dceed791f763f7%3A0xd8bf817ad9af6ff1!2sPar%C3%B3quia%20S%C3%A3o%20Pedro%20Ap%C3%B3stolo!5e0!3m2!1spt-PT!2sbr!4v1710534000000!5m2!1spt-PT!2sbr" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                 </div>
             </div>
         </section>
@@ -250,10 +289,22 @@
     const cursorDot = document.querySelector(".cursor-dot");
     const cursorOutline = document.querySelector(".cursor-outline");
 
-    // Lógica do Mouse Personalizado
+    // Lógica do Mouse Personalizado com Trava para Modal
     window.addEventListener("mousemove", function (e) {
-        // Se o modal estiver aberto, não processa a bolinha personalizada
-        if (document.body.classList.contains('modal-active')) return;
+        // Se o modal estiver ativo, paramos a execução e escondemos a bolinha
+        if (document.body.classList.contains('modal-active')) {
+            cursorDot.style.opacity = "0";
+            cursorOutline.style.opacity = "0";
+            cursorDot.style.display = "none";
+            cursorOutline.style.display = "none";
+            return;
+        }
+
+        // Caso contrário, mostramos e movemos os elementos
+        cursorDot.style.display = "block";
+        cursorOutline.style.display = "block";
+        cursorDot.style.opacity = "1";
+        cursorOutline.style.opacity = "1";
 
         const posX = e.clientX;
         const posY = e.clientY;
@@ -314,32 +365,34 @@
         }
     }
 
-    // Inicialização do Ciclo de Versículos
+    // Inicialização do Ciclo de Versículos (10 segundos)
     updateInspiration();
     setInterval(updateInspiration, 10000);
 
-    // FUNÇÕES DO MODAL (Com controle de cursor)
+    // FUNÇÕES DO MODAL (Com controle de cursor e estado do Body)
     function openModal(pastoralName) {
         const modal = document.getElementById('pastoralModal');
         const title = document.getElementById('modalTitle');
         const inputPastoral = document.getElementById('selectedPastoral');
 
-        title.innerText = "Participar: " + pastoralName;
-        inputPastoral.value = pastoralName;
+        if (title) title.innerText = "Participar: " + pastoralName;
+        if (inputPastoral) inputPastoral.value = pastoralName;
+        
         modal.style.display = "flex";
 
-        // ADICIONADO: Esconde bolinha e habilita ponteiro padrão
+        // ADICIONADO: Esconde a bolinha personalizada e habilita o ponteiro padrão do sistema
         document.body.classList.add('modal-active');
     }
 
     function closeModal() {
-        document.getElementById('pastoralModal').style.display = "none";
+        const modal = document.getElementById('pastoralModal');
+        modal.style.display = "none";
         
-        // ADICIONADO: Volta a bolinha e desabilita ponteiro padrão
+        // ADICIONADO: Remove a trava e volta a exibir a bolinha dourada
         document.body.classList.remove('modal-active');
     }
 
-    // Fecha se clicar fora do card
+    // Fecha o modal se o usuário clicar na área escura (fora do formulário)
     window.onclick = function(event) {
         const modal = document.getElementById('pastoralModal');
         if (event.target == modal) {
@@ -347,12 +400,89 @@
         }
     }
 
-    // Logica de envio
-    document.getElementById('pastoralForm').onsubmit = function(e) {
-        e.preventDefault();
-        alert("Obrigado! Seu interesse na pastoral foi enviado com sucesso.");
-        closeModal();
-    };
+    // Lógica de envio do Formulário
+    const pastoralForm = document.getElementById('pastoralForm');
+    if (pastoralForm) {
+        pastoralForm.onsubmit = function(e) {
+            e.preventDefault();
+            alert("Obrigado! Seu interesse na pastoral foi enviado com sucesso.");
+            closeModal();
+        };
+    }
+
+function atualizarTempoLiturgico() {
+    const agora = new Date();
+    const ano = agora.getFullYear();
+    const hoje = new Date(agora.getFullYear(), agora.getMonth(), agora.getDate());
+
+    // Função para calcular o domingo de Páscoa (Algoritmo de Meeus/Jones/Butcher)
+    function calcularPascoa(ano) {
+        const a = ano % 19;
+        const b = Math.floor(ano / 100);
+        const c = ano % 100;
+        const d = Math.floor(b / 4);
+        const e = b % 4;
+        const f = Math.floor((b + 8) / 25);
+        const g = Math.floor((b - f + 1) / 3);
+        const h = (19 * a + b - d - g + 15) % 30;
+        const i = Math.floor(c / 4);
+        const k = c % 4;
+        const l = (32 + 2 * e + 2 * i - h - k) % 7;
+        const m = Math.floor((a + 11 * h + 22 * l) / 451);
+        const mes = Math.floor((h + l - 7 * m + 114) / 31);
+        const dia = ((h + l - 7 * m + 114) % 31) + 1;
+        return new Date(ano, mes - 1, dia);
+    }
+
+    const pascoa = calcularPascoa(ano);
+    
+    // Datas Relativas
+    const quartaCinzas = new Date(pascoa);
+    quartaCinzas.setDate(pascoa.getDate() - 46);
+    
+    const domingoRamos = new Date(pascoa);
+    domingoRamos.setDate(pascoa.getDate() - 7);
+
+    const pentecostes = new Date(pascoa);
+    pentecostes.setDate(pascoa.getDate() + 49);
+
+    const advento = new Date(ano, 11, 25); // Início aproximado
+    advento.setDate(25 - (advento.getDay() || 7) - 21);
+
+    const natal = new Date(ano, 11, 25);
+    const batismoSenhor = new Date(ano, 0, 13); // Aproximado
+
+    // Elementos do DOM
+    const titulo = document.getElementById('current-liturgy');
+    const desc = document.getElementById('liturgy-desc');
+    const circulo = document.getElementById('liturgy-circle');
+    const nomeCor = document.getElementById('color-name');
+    const banner = document.querySelector('.liturgy-banner');
+
+    let tempo = { nome: "Tempo Comum", cor: "#2E7D32", textoCor: "Verde", info: "É tempo de esperança e de escuta atenta à Palavra de Deus." };
+
+    if (hoje >= quartaCinzas && hoje < domingoRamos) {
+        tempo = { nome: "Quaresma", cor: "#4A148C", textoCor: "Roxo", info: "Tempo de conversão, penitência e oração em preparação para a Páscoa." };
+    } else if (hoje >= domingoRamos && hoje < pascoa) {
+        tempo = { nome: "Semana Santa", cor: "#B71C1C", textoCor: "Vermelho", info: "Acompanhamos a Paixão, Morte e Ressurreição de Jesus Cristo." };
+    } else if (hoje >= pascoa && hoje < pentecostes) {
+        tempo = { nome: "Tempo Pascal", cor: "#F9F7F2", textoCor: "Branco", info: "Aleluia! Cristo ressuscitou e permanece conosco." };
+    } else if (hoje >= advento && hoje < natal) {
+        tempo = { nome: "Advento", cor: "#4A148C", textoCor: "Roxo", info: "Preparação alegre para o nascimento do Salvador." };
+    } else if (hoje >= natal || hoje <= batismoSenhor) {
+        tempo = { nome: "Tempo do Natal", cor: "#F9F7F2", textoCor: "Branco", info: "Celebramos a encarnação do Verbo de Deus entre nós." };
+    }
+
+    // Aplicação visual
+    titulo.innerText = tempo.nome;
+    desc.innerText = tempo.info;
+    circulo.style.backgroundColor = tempo.cor;
+    nomeCor.innerText = tempo.textoCor;
+    banner.style.borderLeftColor = tempo.cor;
+}
+
+// Chamar a função ao carregar
+atualizarTempoLiturgico();
 </script>
 </body>
 </html>

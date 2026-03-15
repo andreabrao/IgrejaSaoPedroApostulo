@@ -61,6 +61,8 @@ section {
 
 .section-title span {
     color: var(--primary);
+    display: inline-block;
+    position: relative;
 }
 
 /* =========================================
@@ -187,310 +189,8 @@ section {
 .versiculo { font-size: 1.5rem; font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; color: var(--dark-blue); max-width: 800px; margin: 0 auto 3.5rem; }
 
 /* =========================================
-   SISTEMA DE GRIDS E CARDS MINIMALISTAS
+   COMPONENTE: INSPIRAÇÃO DIÁRIA
    ========================================= */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.card {
-    background: var(--white);
-    padding: 50px 40px;
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(0,0,0,0.04);
-    box-shadow: var(--shadow-premium);
-    transition: var(--transition);
-    text-align: center;
-}
-
-.card:hover { 
-    transform: translateY(-10px); 
-    box-shadow: var(--shadow-vivid);
-    border-color: var(--primary-glow);
-}
-
-.card i {
-    width: 65px;
-    height: 65px;
-    background: var(--cream);
-    color: var(--primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 18px;
-    margin: 0 auto 25px;
-    font-size: 1.6rem;
-}
-
-/* =========================================
-   PASTORAIS E VIDA COMUNITÁRIA
-   ========================================= */
-.pastorais-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 25px;
-}
-
-.pastoral-item {
-    text-align: center;
-    padding: 40px 20px;
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    transition: var(--transition);
-    border: 1px solid rgba(0,0,0,0.03);
-    box-shadow: var(--shadow-premium);
-}
-
-.pastoral-item i { 
-    font-size: 2.5rem; 
-    color: var(--primary); 
-    margin-bottom: 20px; 
-    display: block;
-    transition: var(--transition);
-}
-
-.pastoral-item:hover {
-    background: var(--cream);
-}
-
-.pastoral-item:hover i {
-    transform: scale(1.1) rotate(10deg);
-}
-
-/* =========================================
-   BOTÕES MODERNOS (PILL STYLE)
-   ========================================= */
-.btn-primary, .btn-secondary {
-    padding: 16px 45px;
-    text-decoration: none;
-    font-weight: 900;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    transition: var(--transition);
-    display: inline-block;
-    border-radius: var(--radius-pill);
-    margin: 10px;
-}
-
-.btn-primary { 
-    background: linear-gradient(45deg, var(--primary), var(--primary-light)); 
-    color: var(--white); 
-    border: none; 
-    box-shadow: 0 10px 25px var(--primary-glow); 
-}
-
-.btn-primary:hover { 
-    transform: translateY(-5px); 
-    box-shadow: 0 15px 35px var(--primary-glow); 
-}
-
-.btn-secondary { 
-    border: 3px solid var(--dark-blue); 
-    color: var(--dark-blue); 
-}
-
-.btn-secondary:hover { 
-    background: var(--dark-blue); 
-    color: var(--white); 
-}
-
-/* =========================================
-   FOOTER PROFISSIONAL
-   ========================================= */
-footer {
-    background: var(--deep-dark);
-    color: var(--white);
-    padding: 80px 0 30px;
-    border-top: 8px solid var(--primary);
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
-    gap: 60px;
-    margin-bottom: 60px;
-}
-
-.footer-brand h3 {
-    font-size: 1.4rem;
-    font-weight: 900;
-    color: var(--primary-light);
-    margin-bottom: 20px;
-}
-
-.footer-brand p {
-    font-size: 0.95rem;
-    opacity: 0.7;
-    line-height: 1.8;
-}
-
-.footer-info h4, .footer-links h4 {
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    margin-bottom: 25px;
-    position: relative;
-}
-
-.footer-info h4::after, .footer-links h4::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 30px;
-    height: 3px;
-    background: var(--primary);
-}
-
-.footer-links ul { list-style: none; }
-.footer-links li { margin-bottom: 12px; }
-.footer-links a {
-    color: var(--white);
-    text-decoration: none;
-    opacity: 0.6;
-    transition: var(--transition);
-}
-
-.footer-links a:hover {
-    opacity: 1;
-    color: var(--primary-light);
-    padding-left: 8px;
-}
-
-.footer-social { display: flex; gap: 15px; margin-top: 25px; }
-.footer-social a {
-    width: 45px;
-    height: 45px;
-    background: rgba(255, 255, 255, 0.05);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    color: var(--white);
-    transition: var(--transition);
-}
-
-.footer-social a:hover {
-    background: var(--primary);
-    transform: translateY(-5px);
-}
-
-.footer-bottom {
-    padding-top: 30px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center;
-    font-size: 0.85rem;
-    opacity: 0.5;
-}
-
-/* =========================================
-   RESPONSIVIDADE
-   ========================================= */
-@media (max-width: 992px) {
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-    .pastorais-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 768px) {
-    .navbar { padding: 1rem 5%; }
-    .nav-links { display: none; } /* Ideal adicionar menu hamburguer aqui futuramente */
-    .hero-content h1 { font-size: 3rem; }
-    .footer-grid { grid-template-columns: 1fr; text-align: center; }
-    .footer-info h4::after, .footer-links h4::after { left: 50%; transform: translateX(-50%); }
-    .footer-social { justify-content: center; }
-}
-
-/* Localize esta parte no seu style.css e confirme os valores */
-.secretaria-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Divide em duas colunas iguais */
-    gap: 40px; /* Espaço entre os cards */
-    align-items: start;
-}
-
-/* Ajuste para telas de celular (para um ficar em cima do outro apenas no mobile) */
-@media (max-width: 768px) {
-    .secretaria-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Cursor Personalizado - Ajustado */
-.cursor-dot,
-.cursor-outline {
-    pointer-events: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    z-index: 9999;
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
-
-.cursor-dot {
-    width: 6px; /* Um pouco menor */
-    height: 6px;
-    background-color: var(--dark-blue); /* Agora Azul conforme solicitado */
-}
-
-.cursor-outline {
-    width: 30px; /* Um pouco menor */
-    height: 30px;
-    border: 2px solid var(--primary); /* Mantém o contorno dourado para contraste */
-    transition: all 0.1s ease-out;
-}
-
-/* Esconde o cursor padrão em telas grandes */
-@media (min-width: 992px) {
-    html, body, a, button, .card, .pastoral-item {
-        cursor: none !important;
-    }
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 30px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.footer-bottom p {
-    font-size: 0.85rem;
-    opacity: 0.7;
-    margin-bottom: 5px;
-}
-
-.developer-link {
-    color: var(--primary-light); /* Usa o dourado da sua paleta */
-    text-decoration: none;
-    font-weight: 700;
-    transition: var(--transition);
-    position: relative;
-}
-
-.developer-link:hover {
-    color: var(--white);
-    filter: drop-shadow(0 0 5px var(--primary-glow));
-}
-
-/* Linha decorativa embaixo do seu nome */
-.developer-link::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 1px;
-    bottom: -2px;
-    left: 0;
-    background-color: var(--primary-light);
-    transition: var(--transition);
-}
-
-.developer-link:hover::after {
-    width: 100%;
-}
-
 .daily-inspiration {
     padding: 60px 0;
     background-color: var(--cream);
@@ -536,93 +236,466 @@ footer {
     color: var(--dark-blue);
     margin: 15px 0;
     line-height: 1.6;
+    transition: opacity 0.5s ease-in-out;
 }
 
 .inspiration-card small {
     font-weight: 700;
     color: var(--primary);
+    transition: opacity 0.5s ease-in-out;
 }
 
-.inspiration-card p, 
-.inspiration-card small {
-    transition: opacity 0.5s ease-in-out; /* Suaviza a troca do contador */
+/* =========================================
+   UX: EFEITO LER MAIS & MAPA
+   ========================================= */
+.about-text p {
+    max-height: 150px;
+    overflow: hidden;
+    position: relative;
+    transition: max-height 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-/* Estilos do Modal */
+.about-text.expanded p { max-height: 2000px; }
+
+.read-more-btn {
+    background: none; border: none;
+    color: var(--primary); font-weight: 800;
+    text-transform: uppercase; font-size: 0.8rem;
+    letter-spacing: 1px; cursor: pointer;
+    margin-top: 15px; display: inline-block;
+    transition: var(--transition);
+}
+
+.map-container {
+    width: 100%; height: 450px;
+    border-radius: var(--radius-lg);
+    overflow: hidden; margin-top: 40px;
+    border: 8px solid var(--white);
+    box-shadow: var(--shadow-premium);
+}
+
+/* =========================================
+   GRIDS, CARDS E PASTORAIS
+   ========================================= */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: var(--white);
+    padding: 50px 40px;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: var(--shadow-premium);
+    transition: var(--transition);
+    text-align: center;
+}
+
+.card:hover { transform: translateY(-10px); box-shadow: var(--shadow-vivid); border-color: var(--primary-glow); }
+
+.card i {
+    width: 65px; height: 65px;
+    background: var(--cream); color: var(--primary);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 18px; margin: 0 auto 25px; font-size: 1.6rem;
+}
+
+.pastorais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.pastoral-item {
+    text-align: center; padding: 40px 20px;
+    background: var(--white); border-radius: var(--radius-lg);
+    transition: var(--transition); border: 1px solid rgba(0,0,0,0.03);
+    box-shadow: var(--shadow-premium);
+}
+
+.pastoral-item:hover { background: var(--cream); }
+
+.secretaria-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px; align-items: start;
+}
+
+/* =========================================
+   BOTÕES MODERNOS
+   ========================================= */
+.btn-primary, .btn-secondary {
+    padding: 16px 45px; text-decoration: none;
+    font-weight: 900; text-transform: uppercase;
+    font-size: 0.8rem; letter-spacing: 2px;
+    transition: var(--transition); display: inline-block;
+    border-radius: var(--radius-pill); margin: 10px;
+}
+
+.btn-primary { 
+    background: linear-gradient(45deg, var(--primary), var(--primary-light)); 
+    color: var(--white); border: none; box-shadow: 0 10px 25px var(--primary-glow); 
+}
+
+.btn-secondary { border: 3px solid var(--dark-blue); color: var(--dark-blue); }
+.btn-secondary:hover { background: var(--dark-blue); color: var(--white); }
+
+/* =========================================
+   SISTEMA DE MODAL
+   ========================================= */
 .modal {
-    display: none; 
-    position: fixed;
-    z-index: 10000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+    display: none; position: fixed; z-index: 10000;
+    left: 0; top: 0; width: 100%; height: 100%;
     background-color: rgba(7, 18, 35, 0.8);
     backdrop-filter: blur(8px);
-    align-items: center;
-    justify-content: center;
+    align-items: center; justify-content: center;
 }
 
 .modal-content {
-    background: var(--white);
-    padding: 40px;
-    width: 90%;
-    max-width: 500px;
-    position: relative;
-    animation: modalAppear 0.4s ease-out;
+    background: var(--white); padding: 40px;
+    width: 90%; max-width: 500px;
+    position: relative; animation: modalAppear 0.4s ease-out;
+    border-radius: var(--radius-lg);
 }
 
-@keyframes modalAppear {
-    from { transform: translateY(50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
+@keyframes modalAppear { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
 .close-modal {
-    position: absolute;
-    right: 20px;
-    top: 15px;
-    font-size: 28px;
-    font-weight: bold;
-    color: var(--primary);
-    cursor: pointer;
+    position: absolute; right: 20px; top: 15px;
+    font-size: 28px; font-weight: bold; color: var(--primary); cursor: pointer;
 }
 
-.input-group {
-    margin-bottom: 15px;
-}
-
+.input-group { margin-bottom: 15px; }
 .input-group input, .input-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid rgba(7, 18, 35, 0.1);
-    border-radius: 8px;
-    font-family: 'Montserrat', sans-serif;
-    outline: none;
+    width: 100%; padding: 12px;
+    border: 1px solid rgba(7, 18, 35, 0.1); border-radius: 8px;
+    font-family: 'Montserrat', sans-serif; outline: none;
 }
 
-.input-group input:focus {
-    border-color: var(--primary);
+/* =========================================
+   WHATSAPP E CURSOR PERSONALIZADO
+   ========================================= */
+.whatsapp-float {
+    position: fixed; bottom: 30px; right: 30px;
+    background-color: #25d366; color: white;
+    width: 60px; height: 60px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+    z-index: 999; transition: var(--transition); text-decoration: none;
 }
 
-/* No seu style.css */
+.whatsapp-tooltip {
+    position: absolute; right: 75px; background: var(--white);
+    color: var(--dark-blue); padding: 10px 18px; border-radius: 12px;
+    font-size: 0.85rem; font-weight: 700; white-space: nowrap;
+    box-shadow: var(--shadow-vivid); opacity: 0; transition: var(--transition);
+    border-left: 4px solid #25d366; pointer-events: none;
+}
 
-/* Classe que será aplicada ao body quando o modal abrir */
+.whatsapp-float:hover .whatsapp-tooltip { opacity: 1; transform: translateX(-10px); }
+
+.cursor-dot, .cursor-outline {
+    pointer-events: none; position: fixed; top: 0; left: 0;
+    transform: translate(-50%, -50%); border-radius: 50%;
+    z-index: 9999; transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.cursor-dot { width: 6px; height: 6px; background-color: var(--dark-blue); }
+.cursor-outline { width: 30px; height: 30px; border: 2px solid var(--primary); transition: all 0.1s ease-out; }
+
+/* =========================================
+   FOOTER
+   ========================================= */
+footer {
+    background: var(--deep-dark); color: var(--white);
+    padding: 80px 0 30px; border-top: 8px solid var(--primary);
+}
+
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+.footer-brand h3 { font-size: 1.4rem; font-weight: 900; color: var(--primary-light); margin-bottom: 20px; }
+.footer-social { display: flex; gap: 15px; margin-top: 25px; }
+.footer-social a {
+    width: 45px; height: 45px; background: rgba(255, 255, 255, 0.05);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; color: var(--white); transition: var(--transition);
+}
+
+.footer-social a:hover { background: var(--primary); transform: translateY(-50%); }
+
+.developer-link {
+    color: var(--primary-light); text-decoration: none;
+    font-weight: 700; transition: var(--transition); position: relative;
+}
+
+.developer-link:hover { color: var(--white); filter: drop-shadow(0 0 5px var(--primary-glow)); }
+
+/* =========================================
+   RESPONSIVIDADE & ESTADOS
+   ========================================= */
+body.modal-active { cursor: auto !important; }
+body.modal-active .cursor-dot, body.modal-active .cursor-outline { display: none !important; }
+
+@media (max-width: 992px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .pastorais-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero-content h1 { font-size: 3rem; }
+    .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    .secretaria-grid { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 992px) {
+    html, body, a, button, .card, .pastoral-item { cursor: none !important; }
+}
+
+/* =========================================
+   BOTÕES COM EFEITO DE PARALAXE E LEVITAÇÃO
+   ========================================= */
+.btn-primary, .btn-secondary {
+    padding: 16px 45px;
+    text-decoration: none;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    display: inline-block;
+    border-radius: var(--radius-pill);
+    margin: 10px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); /* Curva suave de paralaxe */
+}
+
+/* Efeito no botão Principal */
+.btn-primary { 
+    background: linear-gradient(45deg, var(--primary), var(--primary-light)); 
+    color: var(--white); 
+    border: none; 
+    box-shadow: 0 8px 20px var(--primary-glow); 
+}
+
+.btn-primary:hover { 
+    transform: translateY(-8px) scale(1.02); /* Levitação */
+    box-shadow: 0 15px 30px var(--primary-glow); /* Expansão da sombra (profundidade) */
+    filter: brightness(1.1);
+}
+
+/* Efeito no botão Secundário */
+.btn-secondary { 
+    border: 3px solid var(--dark-blue); 
+    color: var(--dark-blue); 
+    background: transparent;
+}
+
+.btn-secondary:hover { 
+    transform: translateY(-8px); 
+    background: var(--dark-blue); 
+    color: var(--white);
+    box-shadow: 0 12px 25px rgba(7, 18, 35, 0.2);
+}
+
+/* Feedback tátil ao clicar */
+.btn-primary:active, .btn-secondary:active {
+    transform: translateY(-2px) scale(0.98);
+    transition: all 0.1s;
+}
+
+/* Quando o formulário (modal) está ativo */
 body.modal-active {
-    cursor: auto !important;
+    cursor: auto !important; /* Força o mouse padrão do Windows */
 }
 
+/* Esconde a bolinha personalizada APENAS visualmente */
 body.modal-active .cursor-dot,
 body.modal-active .cursor-outline {
     display: none !important;
 }
 
-/* Garante que elementos clicáveis dentro do modal mostrem o ponteiro padrão */
-body.modal-active .modal-content, 
+/* Garante que os campos de texto mostrem a barra de digitação */
 body.modal-active input, 
-body.modal-active textarea, 
-body.modal-active button {
-    cursor: auto !important;
+body.modal-active textarea {
+    cursor: text !important;
 }
 
-body.modal-active { cursor: auto !important; }
-body.modal-active .cursor-dot, body.modal-active .cursor-outline { display: none !important; }
+/* Garante que botões mostrem a mãozinha de clique */
+body.modal-active button, 
+body.modal-active .close-modal {
+    cursor: pointer !important;
+}
+
+/* =========================================
+   RESTAURAÇÃO DOS LINKS DO RODAPÉ
+   ========================================= */
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    display: inline-block;
+    position: relative;
+}
+
+/* Efeito de hover original (Linha que surge embaixo) */
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--primary);
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+    transform: translateX(5px); /* Pequeno deslocamento para a direita */
+}
+
+.footer-links a:hover::after {
+    width: 100%;
+}
+
+/* Garante que o cursor personalizado interaja com os links */
+.footer-links a {
+    cursor: pointer;
+}
+
+.liturgical-time {
+    padding: 40px 0 !important;
+    background: var(--white);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.liturgy-banner {
+    display: flex;
+    justify-content: bbetween;
+    align-items: center;
+    background: var(--bg-light);
+    padding: 30px 50px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-premium);
+    border-left: 8px solid #2E7D32; /* Cor dinâmica via JS depois */
+    transition: var(--transition);
+}
+
+.liturgy-info h2 {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--dark-blue);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.liturgy-info .label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.liturgy-color {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.color-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #2E7D32; /* Cor do Tempo Comum */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.color-name {
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+    .liturgy-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px;
+        gap: 20px;
+    }
+}
+
+.color-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid rgba(0,0,0,0.1); /* Adicione esta linha */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: background-color 0.5s ease;
+}
+
+.liturgical-time {
+    padding: 60px 0;
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;     /* Centraliza verticalmente se houver altura definida */
+}
+
+.liturgy-banner {
+    display: flex;
+    flex-direction: column;  /* Coloca os itens um abaixo do outro */
+    align-items: center;      /* Centraliza os textos e o círculo */
+    text-align: center;       /* Garante que o texto fique no meio */
+    margin: 0 auto;           /* Centraliza o bloco no container */
+    max-width: 700px;         /* Define uma largura agradável para leitura */
+    background: var(--bg-light);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-premium);
+    transition: var(--transition);
+}
+
+.liturgy-info {
+    margin-bottom: 20px;
+}
+
+.liturgy-color {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.color-circle {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 3px solid rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+#color-name {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--dark-blue);
+    opacity: 0.7;
+}
