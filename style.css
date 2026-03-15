@@ -1,0 +1,628 @@
+/* =========================================
+   VARIÁVEIS DE DESIGN - ALTO CONTRASTE & MODERN UI
+   ========================================= */
+:root {
+    --primary: #967D28;      /* Dourado denso para legibilidade */
+    --primary-glow: rgba(150, 125, 40, 0.25);
+    --primary-light: #D4AF37; 
+    --dark-blue: #071223;    /* Azul profundo para contraste */
+    --deep-dark: #030810;
+    --white: #ffffff;
+    --cream: #F9F7F2;        
+    --bg-light: #FBFBFA;     /* Branco "papel" minimalista */
+    --glass: rgba(255, 255, 255, 0.92);
+    --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    --shadow-premium: 0 15px 35px rgba(7, 18, 35, 0.05);
+    --shadow-vivid: 0 20px 50px rgba(150, 125, 40, 0.15);
+    --radius-lg: 24px;
+    --radius-pill: 100px;
+}
+
+/* =========================================
+   RESET E ESTRUTURA GLOBAL
+   ========================================= */
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: var(--dark-blue);
+    background-color: var(--bg-light);
+    overflow-x: hidden;
+    letter-spacing: -0.01em;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+section {
+    padding: 100px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.section-title span {
+    color: var(--primary);
+}
+
+/* =========================================
+   NAVBAR GLASSMORPHISM
+   ========================================= */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 8%;
+    background: var(--glass);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 2000;
+    border-bottom: 3px solid var(--primary);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: var(--transition);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.logo-topbar { height: 52px; transition: var(--transition); }
+
+.logo-container:hover .logo-topbar {
+    filter: drop-shadow(0 0 12px var(--primary-glow));
+    transform: scale(1.05) rotate(-2deg);
+}
+
+.logo-text { display: flex; flex-direction: column; }
+.logo-text span { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); font-weight: 800; line-height: 1; }
+.logo-text strong { font-size: 1.1rem; font-weight: 900; background: linear-gradient(90deg, var(--dark-blue), var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.2; }
+
+.nav-links { display: flex; list-style: none; gap: 35px; }
+.nav-links a {
+    text-decoration: none;
+    color: var(--dark-blue);
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    position: relative;
+    transition: var(--transition);
+}
+
+.nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 3px; background: var(--primary); transition: var(--transition); }
+.nav-links a:hover::after { width: 100%; }
+
+/* =========================================
+   HERO SECTION
+   ========================================= */
+.hero {
+    height: 100vh;
+    padding: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('Reforma Matriz em 2000.png'); 
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    animation: slowZoomVivid 15s infinite alternate ease-in-out;
+    filter: contrast(1.15) brightness(0.95);
+}
+
+@keyframes slowZoomVivid { from { transform: scale(1); } to { transform: scale(1.12); } }
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.4) 50%, var(--cream) 100%);
+    z-index: 1;
+}
+
+.hero-content { position: relative; z-index: 10; padding: 0 20px; animation: fadeInUp 1.2s ease-out; }
+
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+.selo-30-anos {
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: var(--radius-pill);
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin-bottom: 2rem;
+    color: var(--white);
+    background: var(--dark-blue);
+    animation: pulseGlow 2s infinite ease-in-out;
+}
+
+@keyframes pulseGlow { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+.hero-content h1 {
+    font-size: clamp(3.5rem, 10vw, 5.5rem);
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--dark-blue) 0%, #1A3A5F 30%, var(--primary) 60%, var(--dark-blue) 100%);
+    background-size: 400% auto; 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    animation: shineTextSutil 8s ease-in-out infinite;
+}
+
+@keyframes shineTextSutil { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+.versiculo { font-size: 1.5rem; font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; color: var(--dark-blue); max-width: 800px; margin: 0 auto 3.5rem; }
+
+/* =========================================
+   SISTEMA DE GRIDS E CARDS MINIMALISTAS
+   ========================================= */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: var(--white);
+    padding: 50px 40px;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: var(--shadow-premium);
+    transition: var(--transition);
+    text-align: center;
+}
+
+.card:hover { 
+    transform: translateY(-10px); 
+    box-shadow: var(--shadow-vivid);
+    border-color: var(--primary-glow);
+}
+
+.card i {
+    width: 65px;
+    height: 65px;
+    background: var(--cream);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    margin: 0 auto 25px;
+    font-size: 1.6rem;
+}
+
+/* =========================================
+   PASTORAIS E VIDA COMUNITÁRIA
+   ========================================= */
+.pastorais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.pastoral-item {
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    transition: var(--transition);
+    border: 1px solid rgba(0,0,0,0.03);
+    box-shadow: var(--shadow-premium);
+}
+
+.pastoral-item i { 
+    font-size: 2.5rem; 
+    color: var(--primary); 
+    margin-bottom: 20px; 
+    display: block;
+    transition: var(--transition);
+}
+
+.pastoral-item:hover {
+    background: var(--cream);
+}
+
+.pastoral-item:hover i {
+    transform: scale(1.1) rotate(10deg);
+}
+
+/* =========================================
+   BOTÕES MODERNOS (PILL STYLE)
+   ========================================= */
+.btn-primary, .btn-secondary {
+    padding: 16px 45px;
+    text-decoration: none;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    transition: var(--transition);
+    display: inline-block;
+    border-radius: var(--radius-pill);
+    margin: 10px;
+}
+
+.btn-primary { 
+    background: linear-gradient(45deg, var(--primary), var(--primary-light)); 
+    color: var(--white); 
+    border: none; 
+    box-shadow: 0 10px 25px var(--primary-glow); 
+}
+
+.btn-primary:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 15px 35px var(--primary-glow); 
+}
+
+.btn-secondary { 
+    border: 3px solid var(--dark-blue); 
+    color: var(--dark-blue); 
+}
+
+.btn-secondary:hover { 
+    background: var(--dark-blue); 
+    color: var(--white); 
+}
+
+/* =========================================
+   FOOTER PROFISSIONAL
+   ========================================= */
+footer {
+    background: var(--deep-dark);
+    color: var(--white);
+    padding: 80px 0 30px;
+    border-top: 8px solid var(--primary);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+}
+
+.footer-brand h3 {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--primary-light);
+    margin-bottom: 20px;
+}
+
+.footer-brand p {
+    font-size: 0.95rem;
+    opacity: 0.7;
+    line-height: 1.8;
+}
+
+.footer-info h4, .footer-links h4 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.footer-info h4::after, .footer-links h4::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 30px;
+    height: 3px;
+    background: var(--primary);
+}
+
+.footer-links ul { list-style: none; }
+.footer-links li { margin-bottom: 12px; }
+.footer-links a {
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.6;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    opacity: 1;
+    color: var(--primary-light);
+    padding-left: 8px;
+}
+
+.footer-social { display: flex; gap: 15px; margin-top: 25px; }
+.footer-social a {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--white);
+    transition: var(--transition);
+}
+
+.footer-social a:hover {
+    background: var(--primary);
+    transform: translateY(-5px);
+}
+
+.footer-bottom {
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    font-size: 0.85rem;
+    opacity: 0.5;
+}
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 992px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .pastorais-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .navbar { padding: 1rem 5%; }
+    .nav-links { display: none; } /* Ideal adicionar menu hamburguer aqui futuramente */
+    .hero-content h1 { font-size: 3rem; }
+    .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    .footer-info h4::after, .footer-links h4::after { left: 50%; transform: translateX(-50%); }
+    .footer-social { justify-content: center; }
+}
+
+/* Localize esta parte no seu style.css e confirme os valores */
+.secretaria-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Divide em duas colunas iguais */
+    gap: 40px; /* Espaço entre os cards */
+    align-items: start;
+}
+
+/* Ajuste para telas de celular (para um ficar em cima do outro apenas no mobile) */
+@media (max-width: 768px) {
+    .secretaria-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Cursor Personalizado - Ajustado */
+.cursor-dot,
+.cursor-outline {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9999;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.cursor-dot {
+    width: 6px; /* Um pouco menor */
+    height: 6px;
+    background-color: var(--dark-blue); /* Agora Azul conforme solicitado */
+}
+
+.cursor-outline {
+    width: 30px; /* Um pouco menor */
+    height: 30px;
+    border: 2px solid var(--primary); /* Mantém o contorno dourado para contraste */
+    transition: all 0.1s ease-out;
+}
+
+/* Esconde o cursor padrão em telas grandes */
+@media (min-width: 992px) {
+    html, body, a, button, .card, .pastoral-item {
+        cursor: none !important;
+    }
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom p {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin-bottom: 5px;
+}
+
+.developer-link {
+    color: var(--primary-light); /* Usa o dourado da sua paleta */
+    text-decoration: none;
+    font-weight: 700;
+    transition: var(--transition);
+    position: relative;
+}
+
+.developer-link:hover {
+    color: var(--white);
+    filter: drop-shadow(0 0 5px var(--primary-glow));
+}
+
+/* Linha decorativa embaixo do seu nome */
+.developer-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--primary-light);
+    transition: var(--transition);
+}
+
+.developer-link:hover::after {
+    width: 100%;
+}
+
+.daily-inspiration {
+    padding: 60px 0;
+    background-color: var(--cream);
+    text-align: center;
+}
+
+.inspiration-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.inspiration-card {
+    padding: 30px;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-premium);
+    border-bottom: 4px solid var(--primary);
+}
+
+.inspiration-card i {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.inspiration-card span {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: var(--dark-blue);
+    opacity: 0.6;
+}
+
+.inspiration-card p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--dark-blue);
+    margin: 15px 0;
+    line-height: 1.6;
+}
+
+.inspiration-card small {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.inspiration-card p, 
+.inspiration-card small {
+    transition: opacity 0.5s ease-in-out; /* Suaviza a troca do contador */
+}
+
+/* Estilos do Modal */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(7, 18, 35, 0.8);
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: var(--white);
+    padding: 40px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    animation: modalAppear 0.4s ease-out;
+}
+
+@keyframes modalAppear {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--primary);
+    cursor: pointer;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group input, .input-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(7, 18, 35, 0.1);
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: var(--primary);
+}
+
+/* No seu style.css */
+
+/* Classe que será aplicada ao body quando o modal abrir */
+body.modal-active {
+    cursor: auto !important;
+}
+
+body.modal-active .cursor-dot,
+body.modal-active .cursor-outline {
+    display: none !important;
+}
+
+/* Garante que elementos clicáveis dentro do modal mostrem o ponteiro padrão */
+body.modal-active .modal-content, 
+body.modal-active input, 
+body.modal-active textarea, 
+body.modal-active button {
+    cursor: auto !important;
+}
+
+body.modal-active { cursor: auto !important; }
+body.modal-active .cursor-dot, body.modal-active .cursor-outline { display: none !important; }
